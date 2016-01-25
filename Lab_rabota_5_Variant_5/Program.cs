@@ -12,43 +12,41 @@ namespace DeletingCharacters
         //Написать метод, входными параметрами которого являются две строки.
         //Метод должен в первой заданной строке удалить каждый символ, принадлежащий и второй заданной строке.
         //При решении не использовать готовые строковые функции
-        public void DeleteCharacter(string firstString, string secondString, out string outputString)
+        public void DeleteCharacter(string first, string second, out string firstString)
         {
             StringBuilder sb = new StringBuilder();
             HashSet<char> secondStringInSet = new HashSet<char>();
 
             //Добавим символы второй строки в HashSet
-            for (int i = 0; i < secondString.Length; i++)
+            for (int i = 0; i < second.Length; i++)
             {
-                secondStringInSet.Add(secondString[i]);
+                secondStringInSet.Add(second[i]);
             }
 
             //Добавим в StringBuilder только те символы, которых нет во второй строке, но есть в первой
-            for (int i = 0; i < firstString.Length; i++)
+            for (int i = 0; i < first.Length; i++)
             {
-                if (!secondStringInSet.Contains(firstString[i]))
+                if (!secondStringInSet.Contains(first[i]))
                 {
-                    sb.Append(firstString[i]);
+                    sb.Append(first[i]);
                 }
             }
 
             //Вернем результат в виде строки
-            outputString = sb.ToString();
+            firstString = sb.ToString();
         }
         static void Main(string[] args)
         {
-            string outputString;
-
             string firstString = "qwerty";
             Console.WriteLine("Первая строка: " + firstString);
             string secondString = "eryuiop";
             Console.WriteLine("Вторая строка: " + secondString);
 
             StringProcessing searchDelete = new StringProcessing();
-            searchDelete.DeleteCharacter(firstString, secondString, out outputString);
+            searchDelete.DeleteCharacter(firstString, secondString, out firstString);
 
             Console.WriteLine("Первая строка " + firstString);
-            Console.WriteLine("Результат после анализа: " + outputString);
+            Console.WriteLine("Результат после анализа: " + firstString);
 
             Console.ReadKey();
         }
